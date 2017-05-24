@@ -2,11 +2,14 @@ package com.example.thediary;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,23 +51,6 @@ public class DisplayListView extends AppCompatActivity {
                 Contacts contacts = new Contacts(date,subject,content);
                 contactAdapter.add(contacts);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                                            int position, long id) {
-
-
-                        Intent i = new Intent(DisplayListView.this, ToExpend.class);
-                        // Pass all data rank
-                        //i.putExtra("date",position);
-                        //i.putExtra("subject",subject);
-                        //i.putExtra("content",content);
-                        // Open SingleItemView.java Activity
-                        startActivity(i);
-                    }
-
-                });
 
                 count++;
             }
@@ -72,6 +58,30 @@ public class DisplayListView extends AppCompatActivity {
         }catch (JSONException e){
             e.printStackTrace();
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                //Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(DisplayListView.this, ToExpend.class);
+
+
+                // Pass all data rank
+                //Toast.makeText(getApplicationContext(),"jk"+position,Toast.LENGTH_LONG).show();
+
+                //i.putExtra("date",basket);
+                //i.putExtra("subject",subject);
+                //i.putExtra("content",content);
+                // Open SingleItemView.java Activity
+                startActivity(i);
+                //Toast.makeText(getApplicationContext(),"Please Wait!!!",Toast.LENGTH_LONG).show();
+            }
+
+        });
+
 
 
 
