@@ -1,7 +1,11 @@
 package com.example.thediary;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -15,6 +19,7 @@ public class DisplayListView extends AppCompatActivity {
     JSONArray jsonArray;
     ContactAdapter contactAdapter;
     ListView listView;
+    Context c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,25 @@ public class DisplayListView extends AppCompatActivity {
                 content = JO.getString("content");
                 Contacts contacts = new Contacts(date,subject,content);
                 contactAdapter.add(contacts);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+
+
+                        Intent i = new Intent(DisplayListView.this, ToExpend.class);
+                        // Pass all data rank
+                        //i.putExtra("date",position);
+                        //i.putExtra("subject",subject);
+                        //i.putExtra("content",content);
+                        // Open SingleItemView.java Activity
+                        startActivity(i);
+                    }
+
+                });
+
                 count++;
             }
 
@@ -52,5 +76,8 @@ public class DisplayListView extends AppCompatActivity {
 
 
     }
+
+
+
 
 }

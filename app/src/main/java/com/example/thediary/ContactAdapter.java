@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
  */
 public class ContactAdapter extends ArrayAdapter{
 
-
+    Context c;
     List list = new ArrayList();
     public ContactAdapter(Context context,int resource){
         super(context, resource);
@@ -63,6 +65,7 @@ public class ContactAdapter extends ArrayAdapter{
 
         return row;
     }
+
     static class ContactHolder{
         TextView tx_date,tx_subject,tx_content;
     }
