@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class DisplayListView extends AppCompatActivity {
 
     String json_string;
@@ -23,6 +25,10 @@ public class DisplayListView extends AppCompatActivity {
     ContactAdapter contactAdapter;
     ListView listView;
     Context c;
+    JSONObject JO;
+
+    ArrayList<String> date,subject,content;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,9 @@ public class DisplayListView extends AppCompatActivity {
         setContentView(R.layout.activity_display_list_view);
         listView = (ListView)findViewById(R.id.listview);
 
+        date = new ArrayList();
+        subject = new ArrayList();
+        content = new ArrayList();
 
         contactAdapter = new ContactAdapter(this,R.layout.row_layout);
         listView.setAdapter(contactAdapter);
@@ -42,13 +51,12 @@ public class DisplayListView extends AppCompatActivity {
 
 
             int count = 0;
-            String date,subject,content;
             while (count<jsonArray.length()){
-                JSONObject JO = jsonArray.getJSONObject(count);
-                date = JO.getString("date");
-                subject = JO.getString("subject");
-                content = JO.getString("content");
-                Contacts contacts = new Contacts(date,subject,content);
+                JO = jsonArray.getJSONObject(count);
+                date.add(JO.getString("date"));
+                subject.add(JO.getString("subject"));
+                content.add(JO.getString("content"));
+                Contacts contacts = new Contacts(date.get(count),subject.get(count),content.get(count));
                 contactAdapter.add(contacts);
 
 
@@ -72,10 +80,10 @@ public class DisplayListView extends AppCompatActivity {
                 // Pass all data rank
                 //Toast.makeText(getApplicationContext(),"jk"+position,Toast.LENGTH_LONG).show();
 
-                //i.putExtra("date",basket);
-                //i.putExtra("subject",subject);
-                //i.putExtra("content",content);
-                // Open SingleItemView.java Activity
+                i.putExtra("date",date.get(position));
+                i.putExtra("subject",subject.get(position));
+                i.putExtra("content",content.get(position));
+                 //Open SingleItemView.java Activity
                 startActivity(i);
                 //Toast.makeText(getApplicationContext(),"Please Wait!!!",Toast.LENGTH_LONG).show();
             }
