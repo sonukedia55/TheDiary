@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //getJSON(savedInstanceState);
         //String view;
-        getJSON(new View(this));
+        //getJSON(new View(this));
         editDate = (EditText) findViewById(R.id.editDate);
         editSubject = (EditText) findViewById(R.id.editSubject);
         editContent = (EditText) findViewById(R.id.editContent);
@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
             //progressDialog.dismiss();
             //userCallback.done(null);
             super.onPostExecute(aVoid);
+            parseJSON(new View(MainActivity.this));
         }
 
     }
