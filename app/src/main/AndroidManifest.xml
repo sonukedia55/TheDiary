@@ -18,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayListView" />
-        <activity android:name=".ToExpend"></activity>
+        <activity android:name=".ToExpend" />
+        <activity android:name=".Login" />
+        <activity android:name=".Register"></activity>
     </application>
 
 </manifest>
